@@ -1,0 +1,39 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "C/C++: cl.exe build active file",
+			// "command": "cl.exe",
+			// "args": [
+			// 	"-g",
+			// 	"${fileDirname}\\**.c",
+			// 	"-o",
+			// 	"${fileDirname}\\server.exe",
+			// ],
+			"command": "buildscript.bat",
+			"args": [
+
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"detail": "compiler: cl.exe"
+		}//,
+		// {
+		// 	"label": "clean",
+		// 	"type": "shell",
+		// 	"command": "del",
+		// 	"args": [
+		// 		"*.obj",
+		// 	],
+		// }
+	]
+}
