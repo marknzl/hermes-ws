@@ -7,7 +7,7 @@
 int main(void)
 {
     CheckWWWRoot();
-    RunWebServer();
+    InitializeWebServer();
 
     return 0;
 }
