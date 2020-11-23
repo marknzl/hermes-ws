@@ -15,14 +15,6 @@ int PathExists(char* path)
 
 void CheckWWWRoot()
 {
-    // BOOL exists = PathFileExistsA("wwwroot/");
-
-    // if (!exists)
-    // {
-    //     printf("wwwroot doesn't exist! Creating web root directory...\n");
-    //     CreateDirectory("wwwroot/", NULL);
-    // }
-
     if (!PathExists(""))    // Empty string since PathExists() starts at wwwroot/
     {
         printf("wwwroot doesn't exist! Creating web root directory...\n");

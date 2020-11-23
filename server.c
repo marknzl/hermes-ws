@@ -49,6 +49,7 @@ void GetResource(char* resourcePath, char* content)
 
     if (PathExists(resourcePath))
     {
+        printf("GET %s\n", resourcePath);
         ZeroMemory(readBuf, 512);
         ZeroMemory(content, 1024);
 
@@ -76,7 +77,7 @@ void BuildResponse(char* response, char* mimeType, char* content)
 {
     strcat(response, "HTTP/1.1 200 OK\r\nContent-Type: ");
     strcat(response, mimeType);
-    strcat(response, "charset=utf-8\r\n\r\n");
+    strcat(response, "\ncharset=utf-8\r\n\r\n");
     strcat(response, content);
 }
 
