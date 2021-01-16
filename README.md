@@ -6,6 +6,6 @@ A very simple (and quite bad lol) barebones web server written in C. Utilizes th
 - Can serve static HTML + CSS pages
 
 ## Todo
-- Cleanup code
-- Fix image serving
-- Implement an LRU cache
+- Cleanup code (Sort of done?...)
+- Fix image serving (Seems to be working... kind of...)
+- Implement an LRU cache (Works so far, needs tweaking)

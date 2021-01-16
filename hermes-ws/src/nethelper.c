@@ -3,13 +3,13 @@
 #include <WinSock2.h>
 #include <WS2tcpip.h>
 #include <string.h>
-#include "filesyshelper.h"
+#include "nethelper.h"
 
 void InitializeListenSocket(SOCKET* listenSocket, char* port)
 {
-    WSADATA wsaData;
-    SOCKET clientSocket = INVALID_SOCKET;
-    int iResult = 0;
+	WSADATA wsaData;
+	SOCKET clientSocket = INVALID_SOCKET;
+	int iResult = 0;
 
     iResult = WSAStartup(MAKEWORD(2, 2), &wsaData); // Requests WinSock v2.2
 
@@ -48,7 +48,7 @@ void InitializeListenSocket(SOCKET* listenSocket, char* port)
         exit(1);
     }
 
-    iResult = bind(*listenSocket, result->ai_addr, (int) result->ai_addrlen);
+    iResult = bind(*listenSocket, result->ai_addr, (int)result->ai_addrlen);
 
     if (iResult == SOCKET_ERROR)
     {
