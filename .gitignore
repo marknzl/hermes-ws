@@ -67,7 +67,6 @@ dkms.conf
 *.user
 *.userosscache
 *.sln.docstates
-*.vcxproj
 *.vcxproj.filters
 *.vcxproj.user
 
