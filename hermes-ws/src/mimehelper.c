@@ -6,12 +6,12 @@
 
 char* GetMimeType(char* resource)
 {
-	const char* extensionStart = strrchr(resource, '.') + 1;
+    const char* extensionStart = strrchr(resource, '.') + 1;
 
-	if (!strcmp(extensionStart, "html"))
-	{
-		return "text/html";
-	}
+    if (!strcmp(extensionStart, "html"))
+    {
+        return "text/html";
+    }
     else if (!strcmp(extensionStart, "css"))
     {
         return "text/css";
