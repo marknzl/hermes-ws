@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <WinSock2.h>
 #include <WS2tcpip.h>
+#include <time.h>
 
 #include "nethelper.h"
 #include "httphelper.h"
@@ -50,11 +51,15 @@ int main(void)
                 struct HTTPRequest* httpRequest = ParseHTTPRequest(recvBuf);
                 char* filePath = GetFullFilePath(httpRequest->resourcePath);
 
-                if (!strcmp(filePath, "wwwroot/"))
+                if (!strcmp(filePath, ROOT_DIR))
+                {
+                    free(filePath);
                     filePath = "wwwroot/index.html";
+                }
 
                 file = CacheGet(&cache, filePath);
-                if (CacheGet(&cache, filePath) == NULL)
+                time_t currentTime = time(NULL);
+                if (file == NULL)
                 {
                     file = FileLoad(filePath);
                     if (file != NULL)
@@ -67,10 +72,16 @@ int main(void)
                     }
                     CacheInsert(&cache, filePath, file, FileDestroy);
                 }
+                else if (currentTime - file->accessTime > 30)
+                {
+                    printf("Cache file age limit reached. Re-fetching file...");
+                    file = FileLoad(filePath);
+                    CacheReplace(&cache, filePath, file);
+                }
 
                 struct HTTPResponse* httpResponseHeader = CreateHTTPResponseHeader(httpRequest, file->fileSize, GetMimeType(file->fileName));
-                send(clientSocket, httpResponseHeader->response, strlen(httpResponseHeader->response), 0);
-                send(clientSocket, file->fileContent, file->fileSize, 0);
+                send(clientSocket, httpResponseHeader->response, strlen(httpResponseHeader->response), 0);  // response header
+                send(clientSocket, file->fileContent, file->fileSize, 0);   // response body
 
                 DestroyHTTPRequest(httpRequest);
                 DestroyHTTPResponse(httpResponseHeader);

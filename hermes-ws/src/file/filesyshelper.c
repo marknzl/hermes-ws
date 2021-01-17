@@ -30,7 +30,7 @@ void CheckWWWRoot()
 {
 	if (!PathExists(""))
 	{
-		printf("wwwroot doesn't exist! Creating web root directory...");
+		printf("wwwroot doesn't exist! Creating web root directory...\n");
 		CreateDirectory(L"wwwroot/", NULL);	// 'L' prefix = wide character literal
 	}
 }

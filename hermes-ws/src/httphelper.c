@@ -74,7 +74,7 @@ struct HTTPResponse* CreateHTTPResponseHeader(struct HTTPRequest* httpRequest, l
 		sprintf_s(pathBuf, 2048, "%s%s", ROOT_DIR, httpRequest->resourcePath + 1);
 	}
 
-	sprintf_s(buf, 2048, "HTTP/1.1 200 OK\r\nContent-Type: %s\r\ncharset=utf-8\r\nContent-Length: %d\r\n\r\n", mimetype, fileSize - 1);
+	sprintf_s(buf, 2048, "HTTP/1.1 200 OK\r\nContent-Type: %s\r\ncharset=utf-8\r\nContent-Length: %d\r\nX-Powered-By: hermes-ws\r\n\r\n", mimetype, fileSize - 1);
 
 	httpResponse->response = buf;
 

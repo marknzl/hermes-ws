@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "cache.h"
 #include "hashtable.h"
+#include "cache.h"
 #include "linkedlist.h"
 #include "node.h"
 
@@ -86,6 +86,19 @@ void CacheInsert(struct Cache* cache, char* key, void* data, void (*FreeData)(vo
 		cache->currentSize++;
 
 	printf("%s has been inserted into the cache!\n", key);
+}
+
+void CacheReplace(struct Cache* cache, char* key, void* data)
+{
+	int index = HashtableContainsKey(cache->ht, key);
+	if (index == -1)
+	{
+		printf("Cache doesn't contain key!");
+		return;
+	}
+
+	struct HTEntry* htEntry = cache->ht->htEntries[index];
+	// Need to implement...
 }
 
 void* CacheGet(struct Cache* cache, char* key)

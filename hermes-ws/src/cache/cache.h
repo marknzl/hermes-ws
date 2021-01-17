@@ -22,6 +22,7 @@ struct Cache
 void CacheInit(struct Cache* cache, int maxCapacity);
 void CacheCleanup(struct Cache* cache);
 void CacheInsert(struct Cache* cache, char* key, void* data, void (*FreeData)(void* data));
+void CacheReplace(struct Cache* cache, char* key, void* data);
 void* CacheGet(struct Cache* cache, char* key);
 
 #endif
